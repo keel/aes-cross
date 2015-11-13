@@ -1,0 +1,37 @@
+{
+  "name": "aes-cross",
+  "version": "1.0.0",
+  "description": "A cross platform AES encryption-decryption with pkcs5Padding. support Java,C,Android,IOS... ",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/keel/aes-cross.git"
+  },
+  "keywords": [
+    "aes",
+    "cross-platform",
+    "java",
+    "c",
+    "android",
+    "ios",
+    "ndk",
+    "aes-ctr",
+    "aes-ofb",
+    "aes-ecb",
+    "aes-cbc",
+    "aes-cfb",
+    "encrypt",
+    "decrypt",
+    "block",
+    "cipher"
+  ],
+  "author": "keel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keel/aes-cross/issues"
+  },
+  "homepage": "https://github.com/keel/aes-cross#readme"
+}
