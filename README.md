@@ -46,7 +46,7 @@ AES/PCBC/ISO10126Padding |     32        |   16
   It works,but the security is a question and not good for concurrent computation, so passed.
 2. **AES/CBC**
 
-  Good choice! **SSL,IPSec** use it too! And **PKCS5Padding** is well support for most platform like JAVA, IOS(PKCS7Padding),C#(PKCS7Padding),so we choose that for padding.
+  Good choice! **SSL,IPSec** use it too! And **PKCS5Padding** is well supported for most platforms, like JAVA, IOS(PKCS7Padding),C#(PKCS7Padding),so we choose that for padding.
   There're some platform need **PKCS5Padding** supported, That's this project to resolve it.
 
 (PKCS7Padding = PKCS5Padding on AES,don't worry about it.)
