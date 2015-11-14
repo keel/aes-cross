@@ -1,0 +1,7 @@
+﻿{
+"predef": [ "describe", "it", "xit", "before", "after", "beforeEach", "afterEach","$","alert","confirm" ],
+  "unused": "vars",
+  "node": true,
+  "sub": true,
+  "expr":true
+}
