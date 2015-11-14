@@ -1,5 +1,7 @@
 # A real cross platform AES encryption-decryption solution. Support Java,C,nodeJs,Android,IOS...
 
+[中文说明](https://github.com/keel/aes-cross/tree/master/info-cn)
+
 ## Why AES?
 * Simple: aymmetric encryption
 * Secure: better than 3DES and others
