@@ -13,8 +13,9 @@ The AES algorithm is same on all platform, but there are some factors make it di
 * **iv**: need to set it besides key
 * **padding**: NoPadding,ZeroPadding,PKCS5Padding,PKCS7Padding,ISO10126Padding,ANSI X.923,SSL3Padding...
 * **key**: the key for encription and decryption
+
 Only all these 5 things are exactly the same can the AES encription and decryption be used anywhere.
-Most language surppots ECB,CBC,CFB cipher mode (CBC is used widely), and all key sizes(128 is used widely).
+Most language supports ECB,CBC,CFB cipher mode (CBC is used widely), and all key sizes(128 is used widely).
 But the padding mode is different in different platforms, and it's also effected by cipher mode.
 
 ## Figure out the Padding
@@ -41,8 +42,10 @@ AES/PCBC/ISO10126Padding |     32        |   16
 
 ## The Solution
 1. AES/CFB/NoPadding or AES/OFB/NoPadding or AES/CTR/NoPadding
+
   It works,but the security is a question and not good for concurrent computation, so passed.
 2. **AES/CBC**
+
   Good choice! **SSL,IPSec** use it too! And **PKCS5Padding** is well support for most platform like JAVA, IOS(PKCS7Padding),C#(PKCS7Padding),so we choose that for padding.
   There're some platform need **PKCS5Padding** supported, That's this project to resolve it.
 
