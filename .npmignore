@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+*.log
+test.js
+java-android/
+node_modules/
+public/
+.deploy*/

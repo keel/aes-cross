@@ -74,7 +74,7 @@ var checkKey = function(key) {
  * buffer/bytes encription
  * @param  {Buffer} buff
  * @param  {Buffer} key  the length must be 16 or 32
- * @param  {Buffer} newIv   default is [0,0...0]
+ * @param  {Buffer} [newIv]   default is [0,0...0]
  * @return {encripted Buffer}
  */
 var encBytes = function(buff, key, newIv) {
@@ -97,9 +97,9 @@ var encBytes = function(buff, key, newIv) {
  * text encription
  * @param  {string} text
  * @param  {Buffer} key         the length must be 16 or 32
- * @param  {Buffer} newIv       default is [0,0...0]
- * @param  {string} input_encoding  ["utf8","ascii","base64","binary"...](https://nodejs.org/api/buffer.html#buffer_buffer)
- * @param  {string} output_encoding ["base64","hex"]
+ * @param  {Buffer} [newIv]       default is [0,0...0]
+ * @param  {string} [input_encoding]  ["utf8" -default,"ascii","base64","binary"...](https://nodejs.org/api/buffer.html#buffer_buffer)
+ * @param  {string} [output_encoding] ["base64" -default,"hex"]
  * @return {string}                 encription result
  */
 var encText = function(text, key, newIv, input_encoding, output_encoding) {
@@ -118,7 +118,7 @@ var encText = function(text, key, newIv, input_encoding, output_encoding) {
  * buffer/bytes decription
  * @param  {Buffer} buff
  * @param  {Buffer} key  the length must be 16 or 32
- * @param  {Buffer} newIv default is [0,0...0]
+ * @param  {Buffer} [newIv] default is [0,0...0]
  * @return {encripted Buffer}
  */
 var decBytes = function(buff, key, newIv) {
@@ -140,9 +140,9 @@ var decBytes = function(buff, key, newIv) {
  * text decription
  * @param  {string} text
  * @param  {Buffer} key         the length must be 16 or 32
- * @param  {Buffer} newIv       default is [0,0...0]
- * @param  {string} input_encoding  ["utf8" - default,"ascii","base64","binary"...](https://nodejs.org/api/buffer.html#buffer_buffer)
- * @param  {string} output_encoding ["base64"- default ,"hex"]
+ * @param  {Buffer} [newIv]       default is [0,0...0]
+ * @param  {string} [input_encoding]  ["utf8" - default,"ascii","base64","binary"...](https://nodejs.org/api/buffer.html#buffer_buffer)
+ * @param  {string} [output_encoding] ["base64"- default ,"hex"]
  * @return {string}                 decription result
  */
 var decText = function(text, key, newIv, input_encoding, output_encoding) {
