@@ -55,7 +55,8 @@ AES/PCBC/ISO10126Padding |     32        |   16
   * nodeJs (AutoPadding)
   * Python (pycrypto)
   * PHP (mcrypt)
-  you don't need any extra code on these platforms, just make sure using **AES/CBC/PKCS5Padding** ,and same iv, same key, the encription and decription will cross platform.
+
+  You don't need any extra code on these platforms, just make sure using **AES/CBC/PKCS5Padding** ,and same iv, same key, the encription and decription will cross platforms.
   There're some platform don't support **PKCS5Padding** , that's the project to resolve it.
 
 > PKCS7Padding = PKCS5Padding on AES,don't worry about it.

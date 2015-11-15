@@ -46,12 +46,13 @@ AES/PCBC/ISO10126Padding |     32        |   16
 2. **AES/CBC**
 
   不错!,**SSL,IPSec**也在用这种方式,然后我们选择 **PKCS5Padding** 做为padding,因为几个大的语言直接支持这种方式,如:
-  * JAVA(PKCS5Padding)
-  * IOS(PKCS7Padding)
-  * C#(PKCS7Padding)
-  * nodeJs(AutoPadding)
-  * Python(pycrypto)
-  * PHP(mcrypt)
+  * JAVA/Android (PKCS5Padding)
+  * ObjectC/IOS (PKCS7Padding)
+  * C# (PKCS7Padding)
+  * nodeJs (AutoPadding)
+  * Python (pycrypto)
+  * PHP (mcrypt)
+
   一些语言可能没有直接的支持方式,所以本项目来实现了这些平台的 **PKCS5Padding** ,以此来支持AES的跨平台.
 
   (注:**PKCS7Padding** 与 **PKCS5Padding** 在AES算法中是相同的)
