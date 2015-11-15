@@ -11,7 +11,7 @@ AES的算法本身是跨平台的,只不过以下这些要素决定了跨平台�
 * **加密模式**: ECB,CBC,CFB,OFB,CTR,XTS...
 * **密钥长度**: 128, 256
 * **iv向量**: 需要与密钥同时设置
-* **padding**: NoPadding,ZeroPadding,PKCS5Padding,PKCS5Padding,ISO10126Padding,ANSI X.923,SSL3Padding...
+* **padding**: NoPadding,ZeroPadding,PKCS5Padding,ISO10126Padding,ANSI X.923,SSL3Padding...
 * **密钥**: 用于加解密的key
 
 只有当这5个要素都完全一致时,AES的加密和解密才可以在任何地方通用,也就是实现跨平台.
@@ -52,6 +52,8 @@ AES/PCBC/ISO10126Padding |     32        |   16
   * nodeJs (AutoPadding)
   * Python (pycrypto)
   * PHP (mcrypt)
+
+  以上这些语言配置**PKCS5Padding**后,使用**相同的iv和key**即可在不同平台间通用.
 
   一些语言可能没有直接的支持方式,所以本项目来实现了这些平台的 **PKCS5Padding** ,以此来支持AES的跨平台.
 

@@ -13,7 +13,7 @@ The AES algorithm is same on all platform, but there are some factors make it di
 * **cipher mode**: ECB,CBC,CFB,OFB,CTR,XTS...
 * **key size**: 128, 256
 * **iv**: init vector
-* **padding**: NoPadding,ZeroPadding,PKCS5Padding,PKCS7Padding,ISO10126Padding,ANSI X.923...
+* **padding**: NoPadding,ZeroPadding,PKCS5Padding,ISO10126Padding,ANSI X.923...
 * **key**: the key for encription and decryption
 
 Only all these 5 things are exactly the same can the AES encription and decryption be used anywhere.
@@ -56,7 +56,7 @@ AES/PCBC/ISO10126Padding |     32        |   16
   * Python (pycrypto)
   * PHP (mcrypt)
 
-  You don't need any extra code on these platforms, just make sure using **AES/CBC/PKCS5Padding** ,and same iv, same key, the encription and decription will cross platforms.
+  You don't need any extra code on these platforms, just make sure using **AES/CBC/PKCS5Padding** ,and **same iv, same key**, the encription and decription will cross platforms.
   There're some platform don't support **PKCS5Padding** , that's the project to resolve it.
 
 > PKCS7Padding = PKCS5Padding on AES,don't worry about it.
@@ -69,3 +69,51 @@ Some cross platform solution choose ZeroPadding on CBC mode.The decryption resul
 If you find a way to **AES/CBC/PKCS5Padding** on a platform, you have already got the cross-platform AES solution on it.
 
 
+# NodeJs
+
+## Install
+```javascript
+npm install aes-cross --save
+```
+
+## Usage
+* default keySize : 128;
+* default iv : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+* default text inputEncoding : 'utf-8';
+* default text outputEncoding : 'base64';
+
+```javascript
+var aes = require('aes-cross');
+var testTxt = 'asdfW  #)(ssff234';
+var key = new Buffer([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6]);
+var enc = aes.encText(testTxt,key);
+console.log('enc:%s',enc);
+var dec = aes.decText(enc,key);
+console.log('dec:%s',dec);
+
+// for buffer
+var testBuff = new Buffer([23,42,55,11,33,45,55]);
+var encBuff = aes.encBytes(testBuff,key);
+console.dir(encBuff);
+var decBuff = aes.decBytes(encBuff,key);
+console.dir(decBuff);
+```
+
+## Custom keysize,iv,encoding
+```javascript
+var iv = new Buffer([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6]);
+var key = new Buffer([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6]);
+var enc = aes.encText(testTxt,key,iv);
+console.log('enc:%s',enc);
+
+//change key size ,default is 128
+aes.setKeySize(256);
+
+//change input encoding
+enc = aes.encText(testTxt,key,iv,'ascii');
+dec = aes.decText(encTxt,key,iv,'ascii');
+
+//change output encoding
+enc = aes.encText(testTxt,key,null,'utf-8','hex');
+dec = aes.decText(enc,key,null,'utf-8','hex');
+```
