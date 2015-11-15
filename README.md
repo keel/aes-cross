@@ -11,9 +11,9 @@
 ## How to cross platform?
 The AES algorithm is same on all platform, but there are some factors make it difficult to do so:
 * **cipher mode**: ECB,CBC,CFB,OFB,CTR,XTS...
-* **key size**: 128, 192, 256
-* **iv**: need to set it besides key
-* **padding**: NoPadding,ZeroPadding,PKCS5Padding,PKCS7Padding,ISO10126Padding,ANSI X.923,SSL3Padding...
+* **key size**: 128, 256
+* **iv**: init vector
+* **padding**: NoPadding,ZeroPadding,PKCS5Padding,PKCS7Padding,ISO10126Padding,ANSI X.923...
 * **key**: the key for encription and decryption
 
 Only all these 5 things are exactly the same can the AES encription and decryption be used anywhere.
@@ -46,16 +46,25 @@ AES/PCBC/ISO10126Padding |     32        |   16
 1. AES/CFB/NoPadding or AES/OFB/NoPadding or AES/CTR/NoPadding
 
   It works,but the security is a question and not good for concurrent computation, so passed.
-2. **AES/CBC**
+2. **AES/CBC/PKCS5Padding**
 
-  Good choice! **SSL,IPSec** use it too! And **PKCS5Padding** is well supported for most platforms, like JAVA, IOS(PKCS7Padding),C#(PKCS7Padding),so we choose that for padding.
-  There're some platform need **PKCS5Padding** supported, That's this project to resolve it.
+  Good choice! **SSL,IPSec** use it too! And **PKCS5Padding** is well supported for most big platforms, such as:
+  * JAVA/Android (PKCS5Padding)
+  * ObjectC/IOS (PKCS7Padding)
+  * C# (PKCS7Padding)
+  * nodeJs (AutoPadding)
+  * Python (pycrypto)
+  * PHP (mcrypt)
+  you don't need any extra code on these platforms, just make sure using **AES/CBC/PKCS5Padding** ,and same iv, same key, the encription and decription will cross platform.
+  There're some platform don't support **PKCS5Padding** , that's the project to resolve it.
 
-(PKCS7Padding = PKCS5Padding on AES,don't worry about it.)
+> PKCS7Padding = PKCS5Padding on AES,don't worry about it.
 
-Some cross platform solution choose NoPadding or ZeroPadding, it's OK on CFB/OFB/CTR mode(the result is original size). But on other mode, the decryption result may have some unnecessary bytes, because the decryption result bytes must be multiple of 16, and it's hard to be cut because the original plaintext size is unknown.
+> [What is PKCS5Padding?](https://en.wikipedia.org/wiki/Padding_%28cryptography%29#PKCS7)
+
+Some cross platform solution choose ZeroPadding on CBC mode.The decryption result may have some unnecessary bytes, because the decryption result bytes must be multiple of 16, and it's hard to be cut because the original plaintext size is unknown.
 
 # The key point!
-If you find a way to **AES/CBC/PKCS5Padding** on a platform, you have already got the AES solution cross it.
+If you find a way to **AES/CBC/PKCS5Padding** on a platform, you have already got the cross-platform AES solution on it.
 
 
