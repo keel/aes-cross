@@ -1,10 +1,11 @@
 # AES/CBC/PKCS5Padding - nodeJs
 
 ## simple use
-default keySize : 128;
-default iv : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-default text inputEncoding : 'utf-8';
-default text outputEncoding : 'base64';
+* default keySize : 128;
+* default iv : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+* default text inputEncoding : 'utf-8';
+* default text outputEncoding : 'base64';
+
 ```javascript
 var aes = require('aes-cross');
 var testTxt = 'asdfW  #)(ssff234';
@@ -33,8 +34,9 @@ console.log('enc:%s',enc);
 aes.setKeySize(256);
 
 //change input encoding
-enc = aes.encText(testTxt,key,null,'ascii');
+enc = aes.encText(testTxt,key,iv,'ascii');
 
 //change output encoding
 enc = aes.encText(testTxt,key,null,'utf-8','hex');
+dec = aes.decText(enc,key,null,'utf-8','hex');
 ```
