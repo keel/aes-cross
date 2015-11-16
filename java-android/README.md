@@ -2,7 +2,7 @@
 
 
 ## Usage
-* keySize : 128;
+* keySize : 16 (aes-cbc-128);
 * iv : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 * text inputEncoding : 'utf-8';
 * text outputEncoding : 'base64';

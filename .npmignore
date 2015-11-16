@@ -5,6 +5,9 @@ test.js
 temp/
 java-android/
 c-ndk/
+c/
+ndk/
+php/
 node_modules/
 public/
 .deploy*/
