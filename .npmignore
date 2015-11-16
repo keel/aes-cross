@@ -2,7 +2,9 @@
 Thumbs.db
 *.log
 test.js
+temp/
 java-android/
+c-ndk/
 node_modules/
 public/
 .deploy*/

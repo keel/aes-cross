@@ -1,6 +1,8 @@
 .DS_Store
 Thumbs.db
 *.log
+test.js
 node_modules/
+temp/
 public/
 .deploy*/
