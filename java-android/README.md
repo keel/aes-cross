@@ -12,8 +12,7 @@ public static void main(String[] args) {
   String s = "asdfW  #)(ssff234";
 
   // key size must be 16
-  byte[] key = { 12, 13, 12, 33, 33, 44, 3, 34, 44, 44, 9, 45, 28, 44,
-      22, 2 };
+  byte[] key = { 1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6 };
 
   // iv size must be 16
   byte[] ivk = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };

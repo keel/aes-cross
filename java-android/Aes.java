@@ -62,8 +62,7 @@ public class Aes {
 
 	public static void main(String[] args) {
 		String s = "asdfW  #)(ssff234";
-		byte[] key = { 12, 13, 12, 33, 33, 44, 3, 34, 44, 44, 9, 45, 28, 44,
-				22, 2 };
+		byte[] key = { 1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6 };
 		byte[] ivk = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		try {
