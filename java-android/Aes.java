@@ -71,13 +71,13 @@ public class Aes {
 			String dec = decText(enc, key, ivk);
 			System.out.println(dec);
 
-			// If there is only one key and one iv, use AesInstance for better performance
+			// If there is only one key and one iv, use AesInstance for better performance,but generally the iv need change everyTime
 
-			AesInstance ai = AesInstance.getInstance(key, ivk);
-			enc = ai.encText(s);
-			System.out.println(enc);
-			dec = ai.decText(enc);
-			System.out.println(dec);
+			// AesInstance ai = AesInstance.getInstance(key, ivk);
+			// enc = ai.encText(s);
+			// System.out.println(enc);
+			// dec = ai.decText(enc);
+			// System.out.println(dec);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
