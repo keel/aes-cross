@@ -1,6 +1,6 @@
 # AES/CBC/PKCS5Padding - nodeJs
 
-## Install
+## Installation
 ```javascript
 npm install aes-cross --save
 ```
@@ -15,6 +15,15 @@ npm install aes-cross --save
 var aes = require('aes-cross');
 var testTxt = 'asdfW  #)(ssff234';
 var key = new Buffer([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6]);
+/**
+ * encText/decText : text encription
+ * @param  {string} text
+ * @param  {Buffer} key         the length must be 16 or 32
+ * @param  {Buffer} [newIv]       optional,default is [0,0...0]
+ * @param  {string} [input_encoding]  optional,"utf8" -default,"ascii","base64","binary"...(https://nodejs.org/api/buffer.html#buffer_buffer)
+ * @param  {string} [output_encoding] optional,"base64" -default,"hex"...
+ * @return {string}                 encription result
+ */
 var enc = aes.encText(testTxt,key);
 console.log('enc:%s',enc);
 var dec = aes.decText(enc,key);
@@ -22,6 +31,13 @@ console.log('dec:%s',dec);
 
 // for buffer
 var testBuff = new Buffer([23,42,55,11,33,45,55]);
+/**
+ * encBytes/decBytes: buffer/bytes encription
+ * @param  {Buffer} buff
+ * @param  {Buffer} key  the length must be 16 or 32
+ * @param  {Buffer} [newIv]   optional,default is [0,0...0]
+ * @return {Buffer}
+ */
 var encBuff = aes.encBytes(testBuff,key);
 console.dir(encBuff);
 var decBuff = aes.decBytes(encBuff,key);

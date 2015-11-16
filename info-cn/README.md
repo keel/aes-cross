@@ -43,7 +43,7 @@ AES/PCBC/ISO10126Padding |     32        |   16
 1. AES/CFB/NoPadding or AES/OFB/NoPadding or AES/CTR/NoPadding
 
   可以用,但安全性堪忧,且不利于并行计算,不建议采用.
-2. **AES/CBC**
+2. **AES/CBC/PKCS5Padding**
 
   不错!,**SSL,IPSec**也在用这种方式,然后我们选择 **PKCS5Padding** 做为padding,因为几个大的语言直接支持这种方式,如:
   * JAVA/Android (PKCS5Padding)
