@@ -1,4 +1,5 @@
 # A real cross platform AES encryption-decryption solution. Support Java,C,nodeJs,Android,IOS...
+[![Build Status](https://travis-ci.org/keel/aes-cross.svg?branch=master)](https://travis-ci.org/keel/aes-cross)
 
 [中文说明](https://github.com/keel/aes-cross/tree/master/info-cn)
 
