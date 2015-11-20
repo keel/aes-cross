@@ -2,7 +2,7 @@
   "name": "aes-cross",
   "version": "1.0.7",
   "description": "A cross platform AES encryption-decryption with pkcs5Padding. support Java,javascript,C,Android,IOS... ",
-  "main": "nodeJs/aes.js",
+  "main": "node/aes.js",
   "scripts": {
     "test": "mocha"
   },
