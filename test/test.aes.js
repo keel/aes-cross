@@ -3,8 +3,6 @@
 var expect = require('chai').expect;
 // var rewire = require('rewire');
 // var _aes = rewire('../nodejs/aes');
-var tjs = require('../t');
-console.log('test.aes path:%j',__dirname);
 var aes = require('../node/aes');
 
 describe('aes.js', function() {

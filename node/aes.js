@@ -4,8 +4,6 @@
  */
 'use strict';
 
-console.log('aes.js:%s',__dirname);
-
 var crypto = require('crypto');
 
 var IV = new Buffer([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
