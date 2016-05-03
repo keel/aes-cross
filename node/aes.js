@@ -13,12 +13,12 @@ var outputEncoding = 'base64';
 var inputEncoding = 'utf8';
 
 var setKeySize = function(size) {
-  if (size !== 128 && size !== 256) {
-    throw ('AES.setKeySize error: ' + size);
-  }
-  keySize = size;
-  algorithm = 'aes-' + keySize + '-cbc';
-  // console.log('setkeySize:%j',keySize);
+    if (size !== 128 && size !== 256) {
+        throw ('AES.setKeySize error: ' + size);
+    }
+    keySize = size;
+    algorithm = 'aes-' + keySize + '-cbc';
+    // console.log('setkeySize:%j',keySize);
 };
 
 
@@ -63,12 +63,12 @@ var setKeySize = function(size) {
  * @return {}
  */
 var checkKey = function(key) {
-  if (!key) {
-    throw 'AES.checkKey error: key is null ';
-  }
-  if (key.length !== (keySize / 8)) {
-    throw 'AES.checkKey error: key length is not ' + (keySize / 8) + ': ' + key.length;
-  }
+    if (!key) {
+        throw 'AES.checkKey error: key is null ';
+    }
+    if (key.length !== (keySize / 8)) {
+        throw 'AES.checkKey error: key length is not ' + (keySize / 8) + ': ' + key.length;
+    }
 };
 
 /**
@@ -79,9 +79,8 @@ var checkKey = function(key) {
  * @return {encripted Buffer}
  */
 var encBytes = function(buff, key, newIv) {
-  checkKey(key);
-  var iv = newIv || IV;
-  try {
+    checkKey(key);
+    var iv = newIv || IV;
     var cipher = crypto.createCipheriv(algorithm, key, iv);
     // cipher.setAutoPadding(false);
     // var re = Buffer.concat([cipher.update(pkcs5Padding(buff)), cipher.final()]);
@@ -89,9 +88,7 @@ var encBytes = function(buff, key, newIv) {
     var re = Buffer.concat([cipher.update(buff), cipher.final()]);
     // console.log('enc re:%s,len:%d', printBuf(re), re.length);
     return re;
-  } catch (e) {
-    throw 'AES.encBytes error: ' + e.stack;
-  }
+
 };
 
 /**
@@ -104,14 +101,14 @@ var encBytes = function(buff, key, newIv) {
  * @return {string}                 encription result
  */
 var encText = function(text, key, newIv, input_encoding, output_encoding) {
-  checkKey(key);
-  var iv = newIv || IV;
-  var inEncoding = input_encoding || inputEncoding;
-  var outEncoding = output_encoding || outputEncoding;
-  var buff = new Buffer(text, inEncoding);
-  var out = encBytes(buff, key, iv);
-  var re = new Buffer(out).toString(outEncoding);
-  return re;
+    checkKey(key);
+    var iv = newIv || IV;
+    var inEncoding = input_encoding || inputEncoding;
+    var outEncoding = output_encoding || outputEncoding;
+    var buff = new Buffer(text, inEncoding);
+    var out = encBytes(buff, key, iv);
+    var re = new Buffer(out).toString(outEncoding);
+    return re;
 };
 
 
@@ -123,19 +120,14 @@ var encText = function(text, key, newIv, input_encoding, output_encoding) {
  * @return {encripted Buffer}
  */
 var decBytes = function(buff, key, newIv) {
-  checkKey(key);
-  var iv = newIv || IV;
-  try {
+    checkKey(key);
+    var iv = newIv || IV;
     var decipher = crypto.createDecipheriv(algorithm, key, iv);
     // decipher.setAutoPadding(false);
     decipher.setAutoPadding(true);
     var out = Buffer.concat([decipher.update(buff), decipher.final()]);
     // return pkcs5PaddingClear(out);
     return out;
-  } catch (e) {
-    //console.error(e);
-    throw 'AES.decBytes error: ' + e.stack;
-  }
 };
 /**
  * text decription
@@ -147,13 +139,13 @@ var decBytes = function(buff, key, newIv) {
  * @return {string}                 decription result
  */
 var decText = function(text, key, newIv, input_encoding, output_encoding) {
-  checkKey(key);
-  var iv = newIv || IV;
-  var inEncoding = input_encoding || inputEncoding;
-  var outEncoding = output_encoding || outputEncoding;
-  var buff = new Buffer(text, outEncoding);
-  var re = new Buffer(decBytes(buff, key, iv)).toString(inEncoding);
-  return re;
+    checkKey(key);
+    var iv = newIv || IV;
+    var inEncoding = input_encoding || inputEncoding;
+    var outEncoding = output_encoding || outputEncoding;
+    var buff = new Buffer(text, outEncoding);
+    var re = new Buffer(decBytes(buff, key, iv)).toString(inEncoding);
+    return re;
 };
 
 
@@ -162,5 +154,3 @@ exports.encText = encText;
 exports.encBytes = encBytes;
 exports.decText = decText;
 exports.decBytes = decBytes;
-
-

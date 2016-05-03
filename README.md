@@ -124,6 +124,7 @@ var enc = aes.encText(testTxt,key,iv);
 console.log('enc:%s',enc);
 
 //change key size ,default is 128
+key = Buffer.concat([key,key]);
 aes.setKeySize(256);
 
 //change input encoding
