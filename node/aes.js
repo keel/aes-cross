@@ -4,13 +4,13 @@
  */
 'use strict';
 
-const crypto = require('crypto');
+var crypto = require('crypto');
 
-const CBC = 'cbc';
-const ECB = 'ecb';
-const NULL_IV = new Buffer([]);
+var CBC = 'cbc';
+var ECB = 'ecb';
+var NULL_IV = new Buffer([]);
 
-const IV = new Buffer([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+var IV = new Buffer([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 var cipherMode = CBC;
 var keySize = 128;
 var algorithm;
