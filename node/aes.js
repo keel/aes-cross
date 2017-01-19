@@ -6,20 +6,38 @@
 
 var crypto = require('crypto');
 
+var CBC = 'cbc';
+var ECB = 'ecb';
+var NULL_IV = new Buffer([]);
+
 var IV = new Buffer([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+var cipherMode = CBC;
 var keySize = 128;
-var algorithm = 'aes-' + keySize + '-cbc';
+var algorithm;
+setAlgorithm();
 var outputEncoding = 'base64';
 var inputEncoding = 'utf8';
 
-var setKeySize = function(size) {
+function setAlgorithm() {
+    algorithm = 'aes-' + keySize + '-' + cipherMode;
+}
+
+function setCipherMode(mode) {
+    if (mode !== CBC && mode !== ECB) {
+        throw ('AES.setCipherMode error: ' + mode);
+    }
+    cipherMode = mode;
+    setAlgorithm();
+}
+
+function setKeySize(size) {
     if (size !== 128 && size !== 256) {
         throw ('AES.setKeySize error: ' + size);
     }
     keySize = size;
-    algorithm = 'aes-' + keySize + '-cbc';
-    // console.log('setkeySize:%j',keySize);
-};
+    setAlgorithm();
+    // console.log('setKeySize:%j',keySize);
+}
 
 
 // var pkcs5PaddingBytes = new Buffer([
@@ -62,14 +80,14 @@ var setKeySize = function(size) {
  * @param  {Buffer} key
  * @return {}
  */
-var checkKey = function(key) {
+function checkKey(key) {
     if (!key) {
         throw 'AES.checkKey error: key is null ';
     }
     if (key.length !== (keySize / 8)) {
         throw 'AES.checkKey error: key length is not ' + (keySize / 8) + ': ' + key.length;
     }
-};
+}
 
 /**
  * buffer/bytes encription
@@ -78,7 +96,7 @@ var checkKey = function(key) {
  * @param  {Buffer} [newIv]   default is [0,0...0]
  * @return {encripted Buffer}
  */
-var encBytes = function(buff, key, newIv) {
+function encBytes(buff, key, newIv) {
     checkKey(key);
     var iv = newIv || IV;
     var cipher = crypto.createCipheriv(algorithm, key, iv);
@@ -88,8 +106,7 @@ var encBytes = function(buff, key, newIv) {
     var re = Buffer.concat([cipher.update(buff), cipher.final()]);
     // console.log('enc re:%s,len:%d', printBuf(re), re.length);
     return re;
-
-};
+}
 
 /**
  * text encription
@@ -100,17 +117,17 @@ var encBytes = function(buff, key, newIv) {
  * @param  {string} [output_encoding] ["base64" -default,"hex"]
  * @return {string}                 encription result
  */
-var encText = function(text, key, newIv, input_encoding, output_encoding) {
+function encText(text, key, newIv, input_encoding, output_encoding) {
     checkKey(key);
     var iv = newIv || IV;
+    if (cipherMode === ECB) iv = NULL_IV;
     var inEncoding = input_encoding || inputEncoding;
     var outEncoding = output_encoding || outputEncoding;
     var buff = new Buffer(text, inEncoding);
     var out = encBytes(buff, key, iv);
     var re = new Buffer(out).toString(outEncoding);
     return re;
-};
-
+}
 
 /**
  * buffer/bytes decription
@@ -119,7 +136,7 @@ var encText = function(text, key, newIv, input_encoding, output_encoding) {
  * @param  {Buffer} [newIv] default is [0,0...0]
  * @return {encripted Buffer}
  */
-var decBytes = function(buff, key, newIv) {
+function decBytes(buff, key, newIv) {
     checkKey(key);
     var iv = newIv || IV;
     var decipher = crypto.createDecipheriv(algorithm, key, iv);
@@ -128,7 +145,8 @@ var decBytes = function(buff, key, newIv) {
     var out = Buffer.concat([decipher.update(buff), decipher.final()]);
     // return pkcs5PaddingClear(out);
     return out;
-};
+}
+
 /**
  * text decription
  * @param  {string} text
@@ -138,17 +156,19 @@ var decBytes = function(buff, key, newIv) {
  * @param  {string} [output_encoding] ["base64"- default ,"hex"]
  * @return {string}                 decription result
  */
-var decText = function(text, key, newIv, input_encoding, output_encoding) {
+function decText(text, key, newIv, input_encoding, output_encoding) {
     checkKey(key);
     var iv = newIv || IV;
+    if (cipherMode === ECB) iv = NULL_IV;
     var inEncoding = input_encoding || inputEncoding;
     var outEncoding = output_encoding || outputEncoding;
     var buff = new Buffer(text, outEncoding);
     var re = new Buffer(decBytes(buff, key, iv)).toString(inEncoding);
     return re;
-};
+}
 
 
+exports.setCipherMode = setCipherMode;
 exports.setKeySize = setKeySize;
 exports.encText = encText;
 exports.encBytes = encBytes;
