@@ -1,15 +1,15 @@
-# A real cross platform AES encryption-decryption solution. Support Java,C,nodeJs,Android,IOS...
+# A real cross platforms AES encryption-decryption solution. Support Java,C,nodeJs,Android,IOS...
 [![Build Status](https://travis-ci.org/keel/aes-cross.svg?branch=master)](https://travis-ci.org/keel/aes-cross)
 
 [中文说明](https://github.com/keel/aes-cross/tree/master/info-cn)
 
-# How to use aes cross platform
-Make these paras to be same in all platform.
+# How to use AES cross platforms
+Make these paras to be same in all platforms.
 
 * **cipher mode**: ECB,CBC,CFB,OFB,CTR,XTS...
 * **key size**: 128, 256
 * **iv**: init vector
-* **padding**: NoPadding,ZeroPadding,PKCS5Padding,ISO10126Padding,ANSI X.923...
+* **padding**: NoPadding,ZeroPadding,PKCS5Padding,PKCS7Padding,ISO10126Padding,ANSI X.923...
 * **key**: the key for encription and decryption
 
 [more information](https://github.com/keel/aes-cross/blob/master/AES.md)
