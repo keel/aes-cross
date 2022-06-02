@@ -12,7 +12,7 @@ Make these paras to be same in all platform.
 * **padding**: NoPadding,ZeroPadding,PKCS5Padding,ISO10126Padding,ANSI X.923...
 * **key**: the key for encription and decryption
 
-[more information](https://github.com/keel/aes-cross/AES.md)
+[more information](https://github.com/keel/aes-cross/blob/master/AES.md)
 
 ## nodejs api
 ```javascript
