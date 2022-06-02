@@ -1,8 +1,8 @@
 {
   "name": "aes-cross",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A cross platform AES encryption-decryption with pkcs5Padding. support Java,javascript,C,Android,IOS... ",
-  "main": "node/aes.js",
+  "main": "nodejs/aes.js",
   "scripts": {
     "test": "mocha"
   },
@@ -31,8 +31,7 @@
   ],
   "devDependencies": {
     "chai": "^2.3.0",
-    "rewire": "^2.3.3",
-    "mocha": "^2.2.5"
+    "mocha": "^10.0.0"
   },
   "author": "keel",
   "license": "MIT",
