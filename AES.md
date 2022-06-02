@@ -84,54 +84,38 @@ npm install aes-cross --save
 * default text outputEncoding : 'base64';
 
 ```javascript
-var aes = require('aes-cross');
-var testTxt = 'asdfW  #)(ssff234';
-var key = new Buffer([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6]);
-/**
- * encText/decText : text encription
- * @param  {string} text
- * @param  {Buffer} key         the length must be 16 or 32
- * @param  {Buffer} [newIv]       optional,default is [0,0...0]
- * @param  {string} [input_encoding]  optional,"utf8" -default,"ascii","base64","binary"...(https://nodejs.org/api/buffer.html#buffer_buffer)
- * @param  {string} [output_encoding] optional,"base64" -default,"hex"...
- * @return {string}                 encription result
- */
-var enc = aes.encText(testTxt,key);
-console.log('enc:%s',enc);
-var dec = aes.decText(enc,key);
-console.log('dec:%s',dec);
+const aes = require('aes-cross');
 
-// for buffer
-var testBuff = new Buffer([23,42,55,11,33,45,55]);
-/**
- * encBytes/decBytes: buffer/bytes encription
- * @param  {Buffer} buff
- * @param  {Buffer} key  the length must be 16 or 32
- * @param  {Buffer} [newIv]   optional,default is [0,0...0]
- * @return {Buffer}
- */
-var encBuff = aes.encBytes(testBuff,key);
-console.dir(encBuff);
-var decBuff = aes.decBytes(encBuff,key);
-console.dir(decBuff);
-```
+const key = 'b9da49a54f15324d';
+const src = 'abcde';
 
-## Custom keysize,iv,encoding
-```javascript
-var iv = new Buffer([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6]);
-var key = new Buffer([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6]);
-var enc = aes.encText(testTxt,key,iv);
-console.log('enc:%s',enc);
+const key128iv = Buffer.from([12, 13, 12, 33, 33, 44, 3, 34, 44, 44, 9, 45, 28, 44, 22, 2]);
+const key256iv = Buffer.concat([key128iv, key128iv]);
 
-//change key size ,default is 128
-key = Buffer.concat([key,key]);
-aes.setKeySize(256);
 
-//change input encoding
-enc = aes.encText(testTxt,key,iv,'ascii');
-dec = aes.decText(encTxt,key,iv,'ascii');
+// aes-128-cbc
+let enced = aes.enc(src, key, key128iv);
+console.log('enced:', enced);
+let deced = aes.dec(enced, key, key128iv);
+console.log('deced:', deced);
 
-//change output encoding
-enc = aes.encText(testTxt,key,null,'utf-8','hex');
-dec = aes.decText(enc,key,null,'utf-8','hex');
+
+// aes-128-ecb, ECB must use emptyIV
+let algorithm = 'aes-128-ecb';
+
+enced = aes.enc(src, key, aes.emptyIV, 'utf-8', 'base64', algorithm);
+console.log('enced:', enced);
+deced = aes.dec(enced, key, aes.emptyIV, 'base64', 'utf-8', algorithm);
+console.log('deced:', deced);
+
+
+// aes-256-cbc
+algorithm = 'aes-256-cbc';
+const orgText = 'asdfW  #)(ssff234';
+
+enced = aes.enc(orgText, key256iv, aes.zero16IV, 'utf-8', 'base64', algorithm);
+console.log('enced:', enced);
+deced = aes.dec(enced, key256iv, aes.zero16IV, 'base64', 'utf-8', algorithm);
+console.log('deced:', deced);
+
 ```
