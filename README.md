@@ -1,4 +1,4 @@
-# A real cross platforms AES encryption-decryption solution. Support Java,C,nodeJs,Android,IOS...
+# A real cross platforms AES encryption-decryption solution. Support Java,javascript,typescript,C,nodeJs,Android,IOS...
 [![Build Status](https://travis-ci.org/keel/aes-cross.svg?branch=master)](https://travis-ci.org/keel/aes-cross)
 
 [中文说明](https://github.com/keel/aes-cross/tree/master/info-cn)
@@ -81,3 +81,10 @@ deced = aes.dec(enced, key256iv, aes.zero16IV, 'base64', 'utf-8', algorithm);
 console.log('deced:', deced);
 
 ```
+
+
+## typescript
+A pure AES in typescript, zero dependencies, can be used anywhere.
+[more information](https://github.com/keel/aes-cross/tree/master/typescript)
+
+
