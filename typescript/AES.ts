@@ -154,7 +154,7 @@ export class AES {
     return output;
   }
 
-  static hex2str(data: string): Uint8Array {
+  static str2hex(data: string): Uint8Array {
     if (data.length % 2 !== 0) { throw 'Invalid hex format'; }
     const output = new Uint8Array(data.length >> 1);
     let ptr = 0;
@@ -226,7 +226,7 @@ export class AES {
 
   private inMap = {
     base64: AES.base64_to_binary,
-    hex: AES.hex2str,
+    hex: AES.str2hex,
     binary: (input: Uint8Array) => input,
   }
 
