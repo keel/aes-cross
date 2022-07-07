@@ -86,8 +86,8 @@ console.log('deced:', deced);
 ## typescript
 A pure AES in typescript, zero dependencies, can be used anywhere.
 
-typescript/AES.ts
+file: typescript/AES.ts
 
-[Typescript](https://github.com/keel/aes-cross/tree/master/typescript)
+[Read more](https://github.com/keel/aes-cross/tree/master/typescript)
 
 

@@ -5,8 +5,8 @@ Zero dependencies, but typescript 'TextEncoder,TextDecoder','atob,btoa' needed.
 ## USEAGE
 
 ```javascript
-AES.create(key:string|Uint8Array).encString(srcString:string, options?:any);
-AES.create(key:string|Uint8Array).decString(decString:string, options?:any);
+AES.create(key:string|Uint8Array, options?:any).encString(srcString:string);
+AES.create(key:string|Uint8Array, options?:any).decString(decString:string);
 
 options = {
     mode: 'cbc', // cbc(default)/ecb/cfb
@@ -18,9 +18,9 @@ options = {
 
 Test:
 ```javascript
-const aesEnc = AES.create('abcdefg123456611').encString('test aes测试 一下。 有没有',{'mode':'cbc','iv':new Uint8Array(16),'output': 'base64'});
-console.log('AES测试 aesEnc', aesEnc);
+const aesEnc = AES.create('abcdefg123456611',{'mode':'cbc','iv':new Uint8Array(16),'output': 'base64'}).encString('test aes测试 一下。 有没有');
+console.log('aesEnc', aesEnc);
 const aesDec = AES.create('abcdefg123456611').decString(aesEnc);
-console.log('AES测试 aesDec', aesDec);
+console.log('aesDec', aesDec);
 ```
 
